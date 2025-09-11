@@ -1,0 +1,44 @@
+LeetCode 9: Palindrome Number | Easy Two-Pointer Solution with Explanation (Python)
+
+Intuition
+We need to check if the given integer reads the same from left to right and from right to left. A straightforward way to do this is by comparing digits at symmetric positions (first with last, second with second last and so on.
+
+A Palindrome is a number, word, phrase, or sequence of characters that reads the same backward as forward.
+Example palindromes: 121, 1221, 0.
+Non-palindromes: 123, -121, 10.
+
+Approach
+1. Handle negatives: If the number is negative, it cannot be a palindrome because of the negative sign.
+
+2. Numbers ending with 0 (except 0 itself) cannot be palindromes because reversed numbers can't start with 0.
+
+3. Convert to string: Converting the number to a string makes it easier to compare digits by index.
+
+4. Two-pointer comparison:
+
+  Use i starting from the left (0) and j = n - 1 - i from the right.
+
+      Explanation for j = n - 1 - i :
+      Suppose x = 12321 → s = "12321", n = 5.
+      Indexes of characters:
+    
+      s = "1   2   3   2   1"
+          0   1   2   3   4
+    
+      - First character is at index 0.
+      - Last character is at index 4 (which is n - 1 since n=5).
+      - Second character is at index 1.
+      - Second-to-last character is at index 3 (which is n - 1 - 1).
+      - So if i is the index from the left, then j = n - 1 - i gives the matching index from the right.
+        Compare s[i] and s[j].
+
+    If any pair does not match, return False.
+
+5. If all pairs match, return True.
+
+Complexitya
+Time complexity:
+O(n) — We go through each digit at most once.
+
+Space complexity:
+O(n) — We store the number as a string.
