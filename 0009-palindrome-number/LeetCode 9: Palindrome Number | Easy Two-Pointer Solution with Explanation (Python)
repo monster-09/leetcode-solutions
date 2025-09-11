@@ -1,5 +1,7 @@
 LeetCode 9: Palindrome Number | Easy Two-Pointer Solution with Explanation (Python)
 
+Link: https://leetcode.com/problems/palindrome-number/solutions/7177771/leetcode-9-palindrome-number-easy-two-pointer-solution-with-explanation-python/
+
 Intuition
 We need to check if the given integer reads the same from left to right and from right to left. A straightforward way to do this is by comparing digits at symmetric positions (first with last, second with second last and so on.
 
