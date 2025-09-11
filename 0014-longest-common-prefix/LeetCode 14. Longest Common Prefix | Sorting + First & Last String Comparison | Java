@@ -1,0 +1,21 @@
+LeetCode 14. Longest Common Prefix | Sorting + First & Last String Comparison
+
+Link: https://leetcode.com/problems/longest-common-prefix/solutions/7178701/leetcode-14-longest-common-prefix-sorting-first-last-string-comparison/
+
+Intuition
+The common prefix of all strings must also be the prefix between the lexicographically smallest and largest string in the array.
+Lexicographically means dictionary order or alphabetical order, like how words are arranged in a dictionary.Strings are compared character by character using their Unicode values (for English letters, that’s basically a < b < c < … < z).
+So, instead of comparing every string, we can just compare the first and last after sorting.
+
+Approach
+
+1. Sort the array of strings in lexicographical order.
+2. Take the first string (str1) and the last string (str2).
+3. Compare them character by character until a mismatch is found or one string ends.
+4. The common prefix is str1.substring(0, index).
+5. If no characters match, return an empty string.
+
+Complexity
+
+Time complexity:    Sorting takes O(N log N), where N is the number of strings.
+Space complexity:   Sorting is in-place and only a few extra variables are used. O(1)
