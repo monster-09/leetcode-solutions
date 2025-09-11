@@ -1,0 +1,80 @@
+LeetCode 13: Roman to Integer | Solution with Explanation (Python)
+
+[LeetCode - Roman to Integer Solution](https://leetcode.com/problems/roman-to-integer/solutions/7178509/leetcode-13-roman-to-integer-solution-with-explanation-python/)
+
+Intuition
+The problem requires converting a Roman numeral given as a string into its corresponding integer value
+
+Approach
+Symbols and Values: Roman numerals consist of seven different symbols, each corresponding to a specific number:
+◦ I = 1
+◦ V = 5
+◦ X = 10
+◦ L = 50
+◦ C = 100
+◦ D = 500
+◦ M = 1000
+
+• General Rule (Addition): Generally, Roman numerals are written in order from largest to smallest. In these cases, you simply add the values of the digits one by one. For example, II is 1 + 1 = 2, and VI is 5 + 1 = 6.
+
+• Exception Rule (Subtraction): If a number (symbol) is smaller than the one immediately after it, then you must subtract the smaller number instead. For example, IV is 4 because I (1) comes before V (5) and is less than 5, so you subtract 1 from 5 (5 - 1 = 4).
+
+• Limited Subtraction Cases: There are only six specific cases in the Roman numeral system where this subtraction rule applies. These cases are:
+◦ IV (4)
+◦ IX (9)
+◦ XL (40)
+◦ XC (90)
+◦ CD (400)
+◦ CM (900)
+
+How it Works:
+
+1. Map Roman Numerals to Values: Create a dictionary (e.g., Roman) to store the integer value for each Roman numeral symbol, where the symbol is the key.
+
+2. Initialize Total: Set a total variable to zero to accumulate the final integer value.
+
+3. Iterate and Compare: Loop through the input string s up to the second-to-last character (from index 0 to len(s)-2). This is crucial because you need to compare each character (s[i]) with the character immediately after it (s[i+1]).
+
+    Conditional Logic:
+    Inside the loop, compare the value of the current character (s[i]) with the value of the next character (s[i+1]):
+          If value(s[i]) < value(s[i+1]) (Subtraction Case): Subtract the value of the current character from the total.
+          Else (value(s[i]) >= value(s[i+1])) (Addition Case): Add the value of the current character to the total.
+
+4. Handle the Last Character: After the loop finishes, the last character of the string will not have been processed (because the loop stops at len(s)-2). The last character always needs to be added because there is no character after it to cause a subtraction. So, add the value of the last character (s[-1] in Python) to the total.
+
+5. Return Total: The final total is the answer
+
+Example (Input: "MCMXIV"):
+
+Roman dictionary is set up. total = 0.
+
+Loop from i=0 to 4 (since len(s) is 6).
+◦ i = 0: s is 'M' (1000), s is 'C' (100).
+Is 1000 < 100? False.
+Add 1000 to total. total = 1000.
+
+i = 1: s is 'C' (100), s is 'M' (1000).
+Is 100 < 1000? True.
+Subtract 100 from total. total = 900.
+
+i = 2: s is 'M' (1000), s is 'X' (10).
+Is 1000 < 10? False.
+Add 1000 to total. total = 1900.
+
+i = 3: s is 'X' (10), s is 'I' (1).
+Is 10 < 1? False.
+Add 10 to total. total = 1910.
+
+i = 4: s is 'I' (1), s is 'V' (5).
+Is 1 < 5? True.
+Subtract 1 from total. total = 1909.
+
+Loop ends. Add the value of the last character s[-1] ('V', 5) to total.
+total = 1909 + 5 = 1914
+
+Complexity
+Time complexity:
+O(n)
+
+Space complexity:
+O(1)
