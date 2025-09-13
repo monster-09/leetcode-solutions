@@ -1,0 +1,65 @@
+LeetCode 20: Valid Parentheses | Stack Approach | Solution with Explanation | Java
+
+Link : https://leetcode.com/problems/valid-parentheses/solutions/7184612/leetcode-20-valid-parentheses-stack-approach-solution-with-explanation-java/
+
+
+Intuition
+The problem is about checking whether every opening bracket in a string has a matching closing bracket, and whether they are closed in the correct order.
+The stack data structure is the natural fit here, because it works on a Last-In-First-Out (LIFO) principle: the last opened bracket should be the first one to be closed.
+
+Approach
+Initialize an empty stack.
+Traverse through the string character by character:
+If the character is an opening bracket ((, {, [), push the expected closing bracket (), }, ]) onto the stack.
+If the character is a closing bracket, check the top of the stack:
+- If the stack is empty or the top element doesn’t match the current closing bracket, the string is invalid → return false
+- Otherwise, pop the top element.
+After traversing the string, if the stack is empty → return true. Otherwise → return false.
+Complexity
+Time complexity:
+O(n) → We traverse the string once, performing constant-time operations (push/pop) for each character.
+
+Space complexity:
+O(n) → In the worst case (all opening brackets), the stack may hold up to n elements.
+
+Code
+class Solution {
+    public boolean isValid(String s) {
+
+        // Create a stack to keep track of expected closing brackets.
+        Stack<Character> stack = new Stack<>();
+
+        // Traverse through each character in the input string.
+        for (char c : s.toCharArray()) {
+
+            // If it's an opening parenthesis '(', push its matching closing ')' onto the stack.
+            if (c == '(') {
+                stack.push(')');
+            }
+            // If it's an opening curly brace '{', push its matching closing '}' onto the stack.
+            else if (c == '{') {
+                stack.push('}');
+            }
+            // If it's an opening square bracket '[', push its matching closing ']' onto the stack.
+            else if (c == '[') {
+                stack.push(']');
+            }
+            // Otherwise, the character must be a closing bracket.
+            else if (stack.isEmpty() || stack.pop() != c)
+            // Check 1: `stack.isEmpty()`
+            // If the stack is empty, it means we've encountered a closing bracket without any corresponding opening bracket preceding it.
+            // For example, if the string starts with ')' or if all opening brackets have already been matched and popped.
+            // In this case, the string is invalid.
+
+            // Check 2: `stack.pop() != c`
+            // If the top of the stack doesn't match the current closing bracket, then the string is invalid.
+                return false;
+        }
+        
+        // After processing all characters:
+        // If the stack is empty, all opening brackets had matching closing brackets in the correct order → valid.
+        // If not empty, some brackets were left unmatched → invalid.
+        return stack.isEmpty();
+    }
+}
+
